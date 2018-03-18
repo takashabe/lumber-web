@@ -1,51 +1,57 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import 'babel-polyfill';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
+import Typography from 'material-ui/Typography';
+
+const style = {
+  width: '100%',
+  maxWidth: 500,
+};
 
 export default class Article extends React.Component {
   constructor() {
     super();
     this.state = {
-      articles: null,
+      article: null,
     };
 
-    this.getTitles = this.getTitles.bind(this);
+    this.getArticle = this.getArticle.bind(this);
   }
 
   componentWillMount() {
-    let start = this.props.start;
-    if (start === undefined) start = 0;
-    this.getTitles(start);
+    const { id } = this.props.match.params
+    console.log(id)
+    this.getArticle(id);
   }
 
-  async getTitles(start) {
-    const len = 10;
-    axios.get(`/api/titles/${start}/${len}`).then(res => {
-      this.setState({
-        articles: res.data.data,
-      });
-    });
+  async getArticle(id) {
+    const data = await axios
+      .get(`/api/entry/${id}`)
+      .then(res => {
+        return res.data;
+      })
+    this.setState({article: data});
   }
 
   render() {
-    let rows;
-    if (this.state.articles === null)
-      rows = (
-        <ListItem>
-          <ListItemText primary="Not found articles" />
-        </ListItem>
-      );
-    else
-      rows = this.state.articles.map(n => {
-        return (
-          // TODO(takashabe): link to detail article path with SPA router
-          <ListItem key={n.id} component="a" href="#list">
-            <ListItemText primary={n.title} />
-          </ListItem>
-        );
-      });
+    let title, body;
+    if (this.state.article === null) {
+      title = <Typography variant="body1">404: Not found article</Typography>
+      body = <Typography variant="body2">404: Not found article</Typography>
+    } else {
+      title = <Typography variant="body1">{this.state.article.Title}</Typography>
+      body = <Typography variant="body2">{this.state.article.Content}</Typography>
+    }
 
-    return <List>{rows}</List>;
+    return (
+      <div style={style}>
+        Article<br />
+        {title}
+        <br />
+        {body}
+      </div>
+    );
   }
 }

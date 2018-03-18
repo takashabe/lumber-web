@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'normalize.css/normalize.css';
 
 import Header from './header.js';
+import Articles from './articles.js';
 import Article from './article.js';
 
 export default class Routes extends React.Component {
@@ -12,7 +13,9 @@ export default class Routes extends React.Component {
       <BrowserRouter>
         <div>
           <Header />
-          <Article />
+
+          <Route exact path='/' component={Articles}/>
+          <Route path='/entries/:id' component={Article}/>
         </div>
       </BrowserRouter>
     );
