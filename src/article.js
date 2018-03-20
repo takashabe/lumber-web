@@ -14,7 +14,8 @@ export default class Article extends React.Component {
   constructor() {
     super();
     this.state = {
-      article: null,
+      title: '',
+      content: '',
     };
 
     this.getArticle = this.getArticle.bind(this);
@@ -32,25 +33,18 @@ export default class Article extends React.Component {
       .then(res => {
         return res.data;
       })
-    this.setState({article: data});
+    this.setState({
+      title: data.title,
+      content: data.content,
+    });
   }
 
   render() {
-    let title, body;
-    if (this.state.article === null) {
-      title = <Typography variant="body1">404: Not found article</Typography>
-      body = <Typography variant="body2">404: Not found article</Typography>
-    } else {
-      title = <Typography variant="body1">{this.state.article.Title}</Typography>
-      body = <Typography variant="body2">{this.state.article.Content}</Typography>
-    }
-
+    const {title, content} = this.state
     return (
       <div style={style}>
-        Article<br />
-        {title}
-        <br />
-        {body}
+        <Typography variant='headline'>{title}</Typography>
+        <Typography variant='body2'>{content}</Typography>
       </div>
     );
   }
