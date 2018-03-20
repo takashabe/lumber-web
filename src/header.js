@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import {withStyles} from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -14,10 +16,6 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
 });
 
 function Header(props) {
@@ -26,9 +24,11 @@ function Header(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography type="title" color="inherit" className={classes.flex}>
-            takashabe's blog
-          </Typography>
+          <Link to='/'>
+            <Typography variant="title" color="inherit" className={classes.flex}>
+              takashabe's blog
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
