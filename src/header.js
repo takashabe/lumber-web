@@ -16,6 +16,10 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
+  link: {
+    color: 'inherit',
+    textDecoration: 'inherit',
+  },
 });
 
 function Header(props) {
@@ -24,7 +28,7 @@ function Header(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link to='/'>
+          <Link to='/' className={classes.link}>
             <Typography variant="title" color="inherit" className={classes.flex}>
               takashabe's blog
             </Typography>
