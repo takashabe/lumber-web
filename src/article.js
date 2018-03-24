@@ -4,13 +4,18 @@ import axios from 'axios';
 import 'babel-polyfill';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import Typography from 'material-ui/Typography';
+import {withStyles} from 'material-ui/styles';
 
-const style = {
-  width: '100%',
-  maxWidth: 500,
-};
+const styles = theme => ({
+  root: {
+    display: 'block',
+    width: '80%',
+    margin: '1em auto',
+  },
+});
 
-export default class Article extends React.Component {
+
+class Article extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -41,11 +46,23 @@ export default class Article extends React.Component {
 
   render() {
     const {title, content} = this.state
+    const {classes} = this.props
+
     return (
-      <div style={style}>
-        <Typography variant='headline'>{title}</Typography>
-        <Typography variant='body2'>{content}</Typography>
+      <div className={classes.root + ' content'}>
+        <Typography variant='headline'>
+          <span dangerouslySetInnerHTML={{__html: title}}></span>
+        </Typography>
+        <Typography variant='body2'>
+          <span dangerouslySetInnerHTML={{__html: content}}></span>
+        </Typography>
       </div>
     );
   }
 }
+
+Article.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Article);

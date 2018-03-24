@@ -1,10 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import 'babel-polyfill';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import {Link} from 'react-router-dom';
+import {withStyles} from 'material-ui/styles';
 
-export default class Articles extends React.Component {
+const styles = theme => ({
+  root: {
+    width: '80%',
+    margin: '1em auto',
+  },
+  link: {
+    textDecoration: 'none',
+  },
+});
+
+class Articles extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -30,6 +42,7 @@ export default class Articles extends React.Component {
   }
 
   render() {
+    const {classes} = this.props
     let rows;
     if (this.state.articles === null)
       rows = (
@@ -41,7 +54,7 @@ export default class Articles extends React.Component {
       rows = this.state.articles.map(n => {
         return (
           <ListItem key={n.id}>
-            <Link to={`/entries/${n.id}`}>
+            <Link to={`/entries/${n.id}`} className={classes.link}>
               <ListItemText primary={n.title} />
             </Link>
           </ListItem>
@@ -49,10 +62,15 @@ export default class Articles extends React.Component {
       });
 
     return (
-      <div>
-        Entries<br />
+      <div className={classes.root + ' content'}>
         <List>{rows}</List>
       </div>
     );
   }
 }
+
+Articles.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Articles);
