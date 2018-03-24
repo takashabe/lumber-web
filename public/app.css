@@ -1,0 +1,43 @@
+.content h1::before {
+  content: "#";
+  margin-right: 4px;
+}
+
+.content h2::before {
+  content: "##";
+  margin-right: 4px;
+}
+
+.content h3::before {
+  content: "###";
+  margin-right: 4px;
+}
+
+.content h4::before {
+  content: "####";
+  margin-right: 4px;
+}
+
+blockquote {
+  display: block;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  margin: 0;
+}
+
+pre {
+  word-break: break-all;
+  word-wrap: break-word;
+  margin: 4px 0 0 0;
+  border-radius: 4px;
+}
+
+pre > code {
+  overflow: auto;
+  display: block;
+  padding: 2px;
+  margin: 0;
+  border: none;
+  background-color: #efefef;
+}
