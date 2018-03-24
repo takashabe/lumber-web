@@ -28,7 +28,6 @@ class Article extends React.Component {
 
   componentWillMount() {
     const { id } = this.props.match.params
-    console.log(id)
     this.getArticle(id);
   }
 
