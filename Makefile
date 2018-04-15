@@ -1,5 +1,13 @@
 .DEFAULT_GOAL := help
 
+##### Node
+
+build: ## Run webpack build
+	npm run build
+
+watch: ## Run webpack watch
+	npm run watch
+
 ##### Docker
 
 docker-build: ## Build dokcer image
