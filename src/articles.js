@@ -47,7 +47,7 @@ class Articles extends React.Component {
     if (this.state.articles === null)
       rows = (
         <ListItem>
-          <ListItemText primary="Not found articles" />
+          <ListItemText primary="Loading..." />
         </ListItem>
       );
     else
