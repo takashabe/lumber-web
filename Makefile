@@ -1,12 +1,15 @@
 .DEFAULT_GOAL := help
 
-##### Node
+##### Development
 
-build: ## Run webpack build
+build: ## Run webpack --progress
 	npm run build
 
-watch: ## Run webpack watch
+watch: ## Run webpack --progress watch
 	npm run watch
+
+dev: ## Run webpack-dev-server
+	npm run start
 
 ##### Docker
 

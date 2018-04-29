@@ -19,7 +19,7 @@ class Article extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '',
+      title: 'Loading...',
       content: '',
     };
 

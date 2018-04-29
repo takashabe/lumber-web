@@ -5,6 +5,7 @@ import 'babel-polyfill';
 import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
 import {Link} from 'react-router-dom';
 import {withStyles} from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   root: {
@@ -13,6 +14,9 @@ const styles = theme => ({
   },
   link: {
     textDecoration: 'none',
+  },
+  title: {
+    fontSize: '1.5em',
   },
 });
 
@@ -47,7 +51,7 @@ class Articles extends React.Component {
     if (this.state.articles === null)
       rows = (
         <ListItem>
-          <ListItemText primary="Not found articles" />
+          <ListItemText primary="Loading..." />
         </ListItem>
       );
     else
@@ -55,7 +59,7 @@ class Articles extends React.Component {
         return (
           <ListItem key={n.id}>
             <Link to={`/entries/${n.id}`} className={classes.link}>
-              <ListItemText primary={n.title} />
+              <Typography variant="title">{n.title}</Typography>
             </Link>
           </ListItem>
         );
